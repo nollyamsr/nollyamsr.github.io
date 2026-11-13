@@ -1,0 +1,7 @@
+:root { --fundo: #14121c; --texto: #f3efe6; --texto2: #b9b2cc; --ouro: #f2c14e; --link: #7fd1ff; }
+body { margin: 0; background: var(--fundo); color: var(--texto); font: 16px/1.55 system-ui, sans-serif; }
+main { max-width: 720px; margin: 0 auto; padding: 24px 16px 48px; }
+h1, h2 { color: var(--ouro); line-height: 1.25; }
+a { color: var(--link); }
+.data { color: var(--texto2); font-size: 14px; }
+hr { border: 0; border-top: 1px solid #332d48; margin: 32px 0; }
