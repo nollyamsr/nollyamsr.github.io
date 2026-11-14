@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Convite: Velárdia Saga</title>
+<meta property="og:title" content="Velárdia Saga: Pixel Idle RPG">
+<meta property="og:description" content="Um amigo te convidou. Instale pelo link e ganhe um presente no jogo.">
+<meta property="og:type" content="website">
+<!-- Convite com link (T-0608). O jogo manda este link com ?c=CODIGO. O botão copia "VELARDIA-CONVITE:CODIGO"
+     e abre a Play Store; na 1ª abertura o jogo lê o código da área de transferência (scripts/autoload/convites.gd).
+     O prefixo e as letras do código ficam iguais aos de dados/convites.json. -->
+<style>
+:root{--fundo:#15110e;--painel:#1e1915;--borda:#3a2f26;--texto:#f6eedf;--texto2:#b9ae9c;--ouro:#ffd25a;--laranja:#f5a02b;--letra-botao:#1e1408}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fundo);color:var(--texto);font:16px/1.5 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;display:grid;place-items:center;padding:24px 16px}
+main{width:100%;max-width:380px;background:var(--painel);border:1px solid var(--borda);border-radius:18px;padding:24px 20px;display:grid;gap:16px;text-align:center}
+h1{margin:0;color:var(--ouro);font-size:24px;line-height:1.2}
+p{margin:0;color:var(--texto2)}
+.codigo{border:1px dashed var(--laranja);border-radius:12px;padding:12px;background:#120e0a}
+.codigo small{display:block;color:var(--texto2);font-size:12px}
+.codigo b{font-size:28px;letter-spacing:.12em;color:var(--ouro)}
+button{border:0;border-radius:12px;padding:14px;font:800 16px/1 inherit;font-family:inherit;cursor:pointer;width:100%}
+.principal{background:linear-gradient(var(--ouro),var(--laranja));color:var(--letra-botao)}
+.secundario{background:#352d25;color:var(--texto);font-weight:600}
+.ok{color:#4cf08a;font-size:14px;min-height:1.5em}
+.passos{text-align:left;font-size:14px;color:var(--texto2);margin:0;padding-left:20px}
+</style>
+</head>
+<body>
+<main>
+  <h1 id="titulo">Um amigo te chamou para Velárdia Saga</h1>
+  <p id="sub">RPG de fantasia que joga sozinho enquanto você monta o seu herói e os seus pets.</p>
+  <div class="codigo" id="caixa"><small id="rotulo">Código do convite</small><b id="codigo">------</b></div>
+  <button class="principal" id="baixar">Baixar na Play Store</button>
+  <button class="secundario" id="copiar">Copiar código</button>
+  <div class="ok" id="aviso" aria-live="polite"></div>
+  <ol class="passos" id="passos">
+    <li>Toque em Baixar e instale o jogo.</li>
+    <li>Abra o jogo: o convite entra sozinho e você ganha um presente.</li>
+    <li>Se não entrar, vá em Perfil › Convidar amigos › Tenho um código.</li>
+  </ol>
+</main>
+<script>
+(function () {
+  var PREFIXO = "VELARDIA-CONVITE:";
+  var LETRAS = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+  var PLAY = "https://play.google.com/store/apps/details?id=com.stormleaf.velardia";
+  var TEXTOS = {
+    pt: {titulo: "Um amigo te chamou para Velárdia Saga", sub: "RPG de fantasia que joga sozinho enquanto você monta o seu herói e os seus pets.",
+      rotulo: "Código do convite", baixar: "Baixar na Play Store", copiar: "Copiar código", copiado: "Código copiado!",
+      passos: ["Toque em Baixar e instale o jogo.", "Abra o jogo: o convite entra sozinho e você ganha um presente.", "Se não entrar, vá em Perfil › Convidar amigos › Tenho um código."],
+      sem: "Este link está sem código. Peça o link de novo ao seu amigo."},
+    es: {titulo: "Un amigo te invitó a Velardia Saga", sub: "RPG de fantasía que juega solo mientras armas a tu héroe y tus mascotas.",
+      rotulo: "Código de invitación", baixar: "Descargar en Play Store", copiar: "Copiar código", copiado: "¡Código copiado!",
+      passos: ["Toca Descargar e instala el juego.", "Abre el juego: la invitación entra sola y ganas un regalo.", "Si no entra, ve a Perfil › Invitar amigos › Tengo un código."],
+      sem: "Este enlace no tiene código. Pide el enlace otra vez a tu amigo."},
+    en: {titulo: "A friend invited you to Velardia Saga", sub: "A fantasy RPG that plays itself while you build your hero and pets.",
+      rotulo: "Invite code", baixar: "Get it on Google Play", copiar: "Copy code", copiado: "Code copied!",
+      passos: ["Tap Get it and install the game.", "Open the game: the invite is applied by itself and you get a gift.", "If it isn't, go to Profile › Invite friends › I have an invite code."],
+      sem: "This link has no code. Ask your friend for the link again."}
+  };
+  var idioma = (navigator.language || "pt").slice(0, 2).toLowerCase();
+  var t = TEXTOS[idioma] || TEXTOS.en;
+  if (idioma === "pt") { t = TEXTOS.pt; }
+  document.documentElement.lang = idioma === "pt" ? "pt-BR" : idioma;
+  ["titulo", "sub", "rotulo", "baixar", "copiar"].forEach(function (id) { document.getElementById(id).textContent = t[id]; });
+  var lista = document.getElementById("passos");
+  lista.innerHTML = "";
+  t.passos.forEach(function (p) { var li = document.createElement("li"); li.textContent = p; lista.appendChild(li); });
+
+  var bruto = (new URLSearchParams(location.search).get("c") || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+  var valido = bruto.length === 6 && bruto.split("").every(function (c) { return LETRAS.indexOf(c) >= 0; });
+  var aviso = document.getElementById("aviso");
+  if (!valido) {
+    document.getElementById("caixa").hidden = true;
+    document.getElementById("copiar").hidden = true;
+    aviso.style.color = "#ff8a7a";
+    aviso.textContent = t.sem;
+  } else {
+    document.getElementById("codigo").textContent = bruto.slice(0, 3) + "-" + bruto.slice(3);
+  }
+
+  function copiar(texto) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(texto).catch(function () { return copiarVelho(texto); });
+    }
+    return Promise.resolve(copiarVelho(texto));
+  }
+  function copiarVelho(texto) {
+    var campo = document.createElement("textarea");
+    campo.value = texto;
+    campo.setAttribute("readonly", "");
+    campo.style.position = "fixed";
+    campo.style.opacity = "0";
+    document.body.appendChild(campo);
+    campo.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(campo);
+  }
+
+  document.getElementById("baixar").addEventListener("click", function () {
+    var destino = PLAY + (valido ? "&referrer=" + encodeURIComponent("convite=" + bruto) : "");
+    var ir = function () { location.href = destino; };
+    if (!valido) { ir(); return; }
+    copiar(PREFIXO + bruto).then(ir, ir);
+  });
+  document.getElementById("copiar").addEventListener("click", function () {
+    copiar(PREFIXO + bruto).then(function () { aviso.textContent = t.copiado; });
+  });
+})();
+</script>
+</body>
+</html>
