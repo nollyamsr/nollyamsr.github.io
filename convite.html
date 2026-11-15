@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Convite: Velárdia Saga</title>
-<meta property="og:title" content="Velárdia Saga: Pixel Idle RPG">
-<meta property="og:description" content="Um amigo te convidou. Instale pelo link e ganhe um presente no jogo.">
+<meta property="og:title" content="Convite para Velárdia Saga">
+<meta property="og:description" content="Um amigo te convidou. O jogo está em teste fechado: veja como entrar e ganhe um presente.">
 <meta property="og:type" content="website">
 <!-- Convite com link (T-0608). O jogo manda este link com ?c=CODIGO. O botão copia "VELARDIA-CONVITE:CODIGO"
      e abre a Play Store; na 1ª abertura o jogo lê o código da área de transferência (scripts/autoload/convites.gd).
@@ -24,6 +24,10 @@ button{border:0;border-radius:12px;padding:14px;font:800 16px/1 inherit;font-fam
 .principal{background:linear-gradient(var(--ouro),var(--laranja));color:var(--letra-botao)}
 .secundario{background:#352d25;color:var(--texto);font-weight:600}
 .ok{color:#4cf08a;font-size:14px;min-height:1.5em}
+.beta{border:1px solid var(--laranja);border-radius:12px;padding:14px;background:#241a10;text-align:left;display:grid;gap:10px}
+.beta b{color:var(--ouro)}
+.beta ol{margin:0;padding-left:20px;font-size:14px;color:var(--texto2);display:grid;gap:6px}
+.beta a{color:var(--ouro);font-weight:700}
 .passos{text-align:left;font-size:14px;color:var(--texto2);margin:0;padding-left:20px}
 </style>
 </head>
@@ -32,6 +36,10 @@ button{border:0;border-radius:12px;padding:14px;font:800 16px/1 inherit;font-fam
   <h1 id="titulo">Um amigo te chamou para Velárdia Saga</h1>
   <p id="sub">RPG de fantasia que joga sozinho enquanto você monta o seu herói e os seus pets.</p>
   <div class="codigo" id="caixa"><small id="rotulo">Código do convite</small><b id="codigo">------</b></div>
+  <div class="beta" id="beta" hidden>
+    <b id="betaTitulo"></b>
+    <ol id="betaPassos"></ol>
+  </div>
   <button class="principal" id="baixar">Baixar na Play Store</button>
   <button class="secundario" id="copiar">Copiar código</button>
   <div class="ok" id="aviso" aria-live="polite"></div>
@@ -46,19 +54,33 @@ button{border:0;border-radius:12px;padding:14px;font:800 16px/1 inherit;font-fam
   var PREFIXO = "VELARDIA-CONVITE:";
   var LETRAS = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
   var PLAY = "https://play.google.com/store/apps/details?id=com.stormleaf.velardia";
+  // Enquanto o jogo estiver em teste fechado (lista "Beta Velárdia"), só baixa quem está na lista.
+  // No lançamento, trocar BETA para false e a caixa some.
+  var BETA = true;
+  var GRUPO = "https://chat.whatsapp.com/LX2LWoTPSJx8s3obxakgEm";
+  var TESTADOR = "https://play.google.com/apps/testing/com.stormleaf.velardia";
   var TEXTOS = {
     pt: {titulo: "Um amigo te chamou para Velárdia Saga", sub: "RPG de fantasia que joga sozinho enquanto você monta o seu herói e os seus pets.",
       rotulo: "Código do convite", baixar: "Baixar na Play Store", copiar: "Copiar código", copiado: "Código copiado!",
       passos: ["Toque em Baixar e instale o jogo.", "Abra o jogo: o convite entra sozinho e você ganha um presente.", "Se não entrar, vá em Perfil › Convidar amigos › Tenho um código."],
-      sem: "Este link está sem código. Peça o link de novo ao seu amigo."},
+      sem: "Este link está sem código. Peça o link de novo ao seu amigo.",
+      betaTitulo: "O jogo está em teste fechado: só baixa quem está na lista de testadores.",
+      betaPassos: ["Mande o seu e-mail do Google (o da Play Store) para quem te convidou ou no {grupo}.", "Quando avisarem que você entrou na lista, abra o {testador} e toque em \"Tornar-se testador\".", "Depois, volte aqui e siga os passos abaixo."],
+      grupo: "grupo do beta no WhatsApp", testador: "link de testador"},
     es: {titulo: "Un amigo te invitó a Velardia Saga", sub: "RPG de fantasía que juega solo mientras armas a tu héroe y tus mascotas.",
       rotulo: "Código de invitación", baixar: "Descargar en Play Store", copiar: "Copiar código", copiado: "¡Código copiado!",
       passos: ["Toca Descargar e instala el juego.", "Abre el juego: la invitación entra sola y ganas un regalo.", "Si no entra, ve a Perfil › Invitar amigos › Tengo un código."],
-      sem: "Este enlace no tiene código. Pide el enlace otra vez a tu amigo."},
+      sem: "Este enlace no tiene código. Pide el enlace otra vez a tu amigo.",
+      betaTitulo: "El juego está en prueba cerrada: solo lo descargan quienes están en la lista de testers.",
+      betaPassos: ["Envía tu correo de Google (el de Play Store) a quien te invitó o en el {grupo}.", "Cuando te avisen que estás en la lista, abre el {testador} y toca \"Convertirse en tester\".", "Después, vuelve aquí y sigue los pasos de abajo."],
+      grupo: "grupo de la beta en WhatsApp", testador: "enlace de tester"},
     en: {titulo: "A friend invited you to Velardia Saga", sub: "A fantasy RPG that plays itself while you build your hero and pets.",
       rotulo: "Invite code", baixar: "Get it on Google Play", copiar: "Copy code", copiado: "Code copied!",
       passos: ["Tap Get it and install the game.", "Open the game: the invite is applied by itself and you get a gift.", "If it isn't, go to Profile › Invite friends › I have an invite code."],
-      sem: "This link has no code. Ask your friend for the link again."}
+      sem: "This link has no code. Ask your friend for the link again.",
+      betaTitulo: "The game is in closed testing: only people on the tester list can download it.",
+      betaPassos: ["Send your Google email (the one on Play Store) to the friend who invited you or in the {grupo}.", "When they tell you you're on the list, open the {testador} and tap \"Become a tester\".", "Then come back here and follow the steps below."],
+      grupo: "beta WhatsApp group", testador: "tester link"}
   };
   var idioma = (navigator.language || "pt").slice(0, 2).toLowerCase();
   var t = TEXTOS[idioma] || TEXTOS.en;
@@ -68,6 +90,25 @@ button{border:0;border-radius:12px;padding:14px;font:800 16px/1 inherit;font-fam
   var lista = document.getElementById("passos");
   lista.innerHTML = "";
   t.passos.forEach(function (p) { var li = document.createElement("li"); li.textContent = p; lista.appendChild(li); });
+
+  if (BETA) {
+    document.getElementById("beta").hidden = false;
+    document.getElementById("betaTitulo").textContent = t.betaTitulo;
+    var links = {grupo: [GRUPO, t.grupo], testador: [TESTADOR, t.testador]};
+    var ol = document.getElementById("betaPassos");
+    t.betaPassos.forEach(function (passo) {
+      var li = document.createElement("li");
+      passo.split(/(\{grupo\}|\{testador\})/).forEach(function (parte) {
+        var m = parte.match(/^\{(grupo|testador)\}$/);
+        if (m) {
+          var a = document.createElement("a");
+          a.href = links[m[1]][0]; a.textContent = links[m[1]][1]; a.target = "_blank"; a.rel = "noopener";
+          li.appendChild(a);
+        } else { li.appendChild(document.createTextNode(parte)); }
+      });
+      ol.appendChild(li);
+    });
+  }
 
   var bruto = (new URLSearchParams(location.search).get("c") || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
   var valido = bruto.length === 6 && bruto.split("").every(function (c) { return LETRAS.indexOf(c) >= 0; });
