@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beta: Velárdia Saga</title>
+<meta property="og:title" content="Beta do Velárdia Saga">
+<meta property="og:description" content="Idle RPG de fantasia para Android, sem gacha. Entre no beta em 2 toques e ganhe um pet exclusivo no lançamento.">
+<meta property="og:type" content="website">
+<!-- Página única de entrada do beta: todo post de divulgação aponta para cá.
+     GRUPO_GOOGLE: link "participar" do Grupo do Google ligado ao teste fechado na Play Console.
+     Enquanto estiver vazio, o passo 1 manda a pessoa para o grupo do WhatsApp (jeito antigo).
+     ?de=tiktok (ou reddit, discord...) só serve para a gente saber de onde a pessoa veio. -->
+<style>
+:root{--fundo:#15110e;--painel:#1e1915;--borda:#3a2f26;--texto:#f6eedf;--texto2:#b9ae9c;--ouro:#ffd25a;--laranja:#f5a02b;--letra-botao:#1e1408}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fundo);color:var(--texto);font:16px/1.5 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;display:grid;place-items:center;padding:24px 16px}
+main{width:100%;max-width:380px;background:var(--painel);border:1px solid var(--borda);border-radius:18px;padding:24px 20px;display:grid;gap:16px;text-align:center}
+h1{margin:0;color:var(--ouro);font-size:24px;line-height:1.2}
+p{margin:0;color:var(--texto2)}
+.passo{border:1px solid var(--borda);border-radius:12px;padding:14px;background:#120e0a;display:grid;gap:10px;text-align:left}
+.passo b{color:var(--ouro)}
+.passo small{color:var(--texto2);font-size:13px}
+a.botao{display:block;text-align:center;text-decoration:none;border-radius:12px;padding:14px;font-weight:800;line-height:1}
+.principal{background:linear-gradient(var(--ouro),var(--laranja));color:var(--letra-botao)}
+.secundario{background:#352d25;color:var(--texto);font-weight:600}
+.premio{border:1px dashed var(--laranja);border-radius:12px;padding:12px;font-size:14px;color:var(--texto)}
+</style>
+</head>
+<body>
+<main>
+  <h1 id="titulo"></h1>
+  <p id="sub"></p>
+  <div class="premio" id="premio"></div>
+  <div class="passo"><b id="p1t"></b><small id="p1d"></small><a class="botao principal" id="p1b" target="_blank" rel="noopener"></a></div>
+  <div class="passo"><b id="p2t"></b><small id="p2d"></small><a class="botao principal" id="p2b" target="_blank" rel="noopener"></a></div>
+  <div class="passo"><b id="p3t"></b><small id="p3d"></small><a class="botao secundario" id="p3b" target="_blank" rel="noopener"></a></div>
+</main>
+<script>
+(function () {
+  var GRUPO_GOOGLE = "";
+  var WHATSAPP = "https://chat.whatsapp.com/LX2LWoTPSJx8s3obxakgEm";
+  var TESTADOR = "https://play.google.com/apps/testing/com.stormleaf.velardia";
+  var TEXTOS = {
+    pt: {titulo: "Entre no beta do Velárdia Saga",
+      sub: "Idle RPG de fantasia para Android. A luta roda sozinha e você monta a build. Sem gacha, sem pay-to-win.",
+      premio: "Quem testa ganha 1 pet exclusivo no lançamento.",
+      p1t: "1. Entre na lista de testadores", p1d: "Use a mesma conta Google da Play Store do celular onde vai jogar. A liberação é na hora.", p1b: "Participar do grupo de testadores",
+      p1dAntigo: "Entre no grupo do WhatsApp e mande o e-mail da sua conta Google (a mesma da Play Store do celular).", p1bAntigo: "Entrar no grupo do WhatsApp",
+      p2t: "2. Instale o jogo", p2d: "Toque em \"Tornar-se testador\" e depois baixe pela Play Store.", p2b: "Virar testador e instalar",
+      p3t: "3. Conte o que achou (opcional)", p3d: "Grupo do WhatsApp do beta: novidades, dúvidas e relatos de erro.", p3b: "Grupo do WhatsApp"},
+    es: {titulo: "Entra en la beta de Velardia Saga",
+      sub: "Idle RPG de fantasía para Android. La pelea corre sola y tú armas la build. Sin gacha, sin pay-to-win.",
+      premio: "Quien prueba gana 1 mascota exclusiva en el lanzamiento.",
+      p1t: "1. Entra en la lista de testers", p1d: "Usa la misma cuenta de Google de Play Store del celular donde vas a jugar. El acceso es inmediato.", p1b: "Unirme al grupo de testers",
+      p1dAntigo: "Entra en el grupo de WhatsApp y envía el correo de tu cuenta de Google (la misma de Play Store).", p1bAntigo: "Entrar en el grupo de WhatsApp",
+      p2t: "2. Instala el juego", p2d: "Toca \"Convertirse en tester\" y luego descárgalo en Play Store.", p2b: "Ser tester e instalar",
+      p3t: "3. Cuéntanos qué te pareció (opcional)", p3d: "Grupo de WhatsApp de la beta: novedades, dudas y reportes de errores (en portugués).", p3b: "Grupo de WhatsApp"},
+    en: {titulo: "Join the Velardia Saga beta",
+      sub: "A fantasy idle RPG for Android. Combat runs by itself and you craft the build. No gacha, no pay-to-win.",
+      premio: "Testers get 1 exclusive pet at launch.",
+      p1t: "1. Join the tester list", p1d: "Use the same Google account as Play Store on the phone you'll play on. Access is instant.", p1b: "Join the tester group",
+      p1dAntigo: "Join the WhatsApp group and send your Google account email (the same one as Play Store).", p1bAntigo: "Join the WhatsApp group",
+      p2t: "2. Install the game", p2d: "Tap \"Become a tester\", then download it from Play Store.", p2b: "Become a tester and install",
+      p3t: "3. Tell us what you think (optional)", p3d: "Beta WhatsApp group: news, questions and bug reports (in Portuguese).", p3b: "WhatsApp group"}
+  };
+  var idioma = (navigator.language || "pt").slice(0, 2).toLowerCase();
+  var t = TEXTOS[idioma] || TEXTOS.en;
+  document.documentElement.lang = idioma === "pt" ? "pt-BR" : idioma;
+  if (!GRUPO_GOOGLE) { t.p1d = t.p1dAntigo; t.p1b = t.p1bAntigo; }
+  ["titulo", "sub", "premio", "p1t", "p1d", "p1b", "p2t", "p2d", "p2b", "p3t", "p3d", "p3b"].forEach(function (id) {
+    document.getElementById(id).textContent = t[id];
+  });
+  document.getElementById("p1b").href = GRUPO_GOOGLE || WHATSAPP;
+  document.getElementById("p2b").href = TESTADOR;
+  document.getElementById("p3b").href = WHATSAPP;
+})();
+</script>
+</body>
+</html>
