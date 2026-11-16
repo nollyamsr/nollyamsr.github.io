@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beta: Velárdia Saga</title>
+<meta property="og:title" content="Seja Beta Tester de Velárdia Saga">
+<meta property="og:description" content="Entre no teste fechado, jogue antes de todo mundo e ganhe o Astro exclusivo do beta.">
+<meta property="og:type" content="website">
+<!-- Página do beta. 3 passos: grupo do Google -> link de testador -> WhatsApp (opcional).
+     Se GRUPO_GOOGLE estiver vazio, o passo 1 usa o jeito antigo: WhatsApp + e-mail da conta Google.
+     No lançamento, esta página pode sair do ar ou apontar para a Play Store. -->
+<style>
+:root{--fundo:#15110e;--painel:#1e1915;--borda:#3a2f26;--texto:#f6eedf;--texto2:#b9ae9c;--ouro:#ffd25a;--laranja:#f5a02b;--letra-botao:#1e1408}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fundo);color:var(--texto);font:16px/1.5 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:24px 16px 48px}
+main{max-width:480px;margin:0 auto;display:grid;gap:16px}
+.idiomas{display:flex;gap:8px;justify-content:flex-end}
+.idiomas button{background:#352d25;color:var(--texto2);border:0;border-radius:8px;padding:6px 12px;font:600 13px inherit;font-family:inherit;cursor:pointer}
+.idiomas button[aria-pressed=true]{background:var(--laranja);color:var(--letra-botao)}
+h1{margin:0;color:var(--ouro);font-size:28px;line-height:1.2}
+h2{margin:0;color:var(--ouro);font-size:18px}
+p{margin:0;color:var(--texto2)}
+.cartao{background:var(--painel);border:1px solid var(--borda);border-radius:18px;padding:18px;display:grid;gap:10px}
+.destaque{border-color:var(--laranja);background:#241a10}
+.passo{display:flex;gap:12px;align-items:flex-start}
+.num{flex:none;width:32px;height:32px;border-radius:50%;background:var(--laranja);color:var(--letra-botao);font-weight:800;display:grid;place-items:center}
+.passo h2{margin-bottom:2px}
+a.botao{display:block;text-align:center;text-decoration:none;border-radius:12px;padding:14px;font-weight:800;font-size:16px}
+.principal{background:linear-gradient(var(--ouro),var(--laranja));color:var(--letra-botao)}
+.secundario{background:#352d25;color:var(--texto)}
+a.botao[aria-disabled=true]{opacity:.45;pointer-events:none}
+.pequeno{font-size:13px}
+ul{margin:0;padding-left:20px;color:var(--texto2);display:grid;gap:6px}
+b{color:var(--texto)}
+</style>
+</head>
+<body>
+<main>
+  <div class="idiomas">
+    <button data-l="pt">PT</button><button data-l="en">EN</button><button data-l="es">ES</button>
+  </div>
+  <h1 data-t="titulo"></h1>
+  <p data-t="sub"></p>
+
+  <section class="cartao">
+    <div class="passo"><div class="num">1</div><div><h2 data-t="p1t"></h2><p data-t="p1d"></p></div></div>
+    <a class="botao principal" id="grupo" target="_blank" rel="noopener" data-t="p1b"></a>
+    <p class="pequeno" data-t="p1n"></p>
+  </section>
+
+  <section class="cartao">
+    <div class="passo"><div class="num">2</div><div><h2 data-t="p2t"></h2><p data-t="p2d"></p></div></div>
+    <a class="botao principal" id="testador" target="_blank" rel="noopener" data-t="p2b"></a>
+  </section>
+
+  <section class="cartao">
+    <div class="passo"><div class="num">3</div><div><h2 data-t="p3t"></h2><p data-t="p3d"></p></div></div>
+    <a class="botao secundario" id="zap" target="_blank" rel="noopener" data-t="p3b"></a>
+  </section>
+
+  <section class="cartao destaque">
+    <h2 data-t="vt"></h2>
+    <ul id="vantagens"></ul>
+  </section>
+
+  <p class="pequeno" data-t="rodape"></p>
+</main>
+<script>
+(function () {
+  // Grupo do Google do beta: https://groups.google.com/g/velardia-saga-beta (velardia-saga-beta@googlegroups.com).
+  // Só preencher GRUPO_GOOGLE depois que a Play Console aprovar a troca da lista de e-mails pelo grupo. Até lá vale o WhatsApp + e-mail.
+  var GRUPO_GOOGLE = "";
+  var TESTADOR = "https://play.google.com/apps/testing/com.stormleaf.velardia";
+  var WHATSAPP = "https://chat.whatsapp.com/LX2LWoTPSJx8s3obxakgEm";
+
+  var T = {
+    pt: {titulo: "Seja Beta Tester de Velárdia Saga", sub: "O jogo está em teste fechado. Entre em 3 passos rápidos, jogue antes de todo mundo e ajude a deixar o jogo melhor.",
+      p1t: "Entre no grupo do beta", p1d: "Entre com a conta Google que você usa na Play Store do celular onde vai jogar.", p1b: "Entrar no Grupo do Google", p1n: "Com outra conta o download não libera.", p1dA: "Entre no grupo do WhatsApp e mande o e-mail da conta Google que você usa na Play Store do celular onde vai jogar.", p1bA: "Entrar no WhatsApp e mandar o e-mail",
+      p2t: "Instale o jogo", p2d: "Toque em \"Tornar-se testador\" e depois baixe o jogo pela Play Store.", p2b: "Instalar o teste",
+      p3t: "Entre no WhatsApp do beta (opcional)", p3d: "Tire dúvidas, mande sugestões e acompanhe as novidades.", p3b: "Entrar no WhatsApp do beta",
+      vt: "Por que entrar agora",
+      v: ["<b>Astro exclusivo:</b> um pet de tier S só do beta. Não dá para conseguir de outro jeito.", "<b>Convite de amigo sem limite:</b> você ganha 500 Éter por cada um dos 3 primeiros amigos que chegarem a 14 dias de jogo, e 200 Éter do 4º em diante. Seu amigo ganha 100 Éter ao entrar.", "<b>Sua opinião muda o jogo:</b> o que você achar vira ajuste nas próximas versões."],
+      rodape: "Velárdia Saga · Stormleaf"},
+    en: {titulo: "Become a Velárdia Saga Beta Tester", sub: "The game is in closed testing. Join in 3 quick steps, play before everyone else and help make the game better.",
+      p1t: "Join the beta group", p1d: "Sign in with the Google account you use on Play Store on the phone you'll play on.", p1b: "Join the Google Group", p1n: "With another account the download won't unlock.", p1dA: "Join the WhatsApp group and send the email of the Google account you use on Play Store on the phone you'll play on.", p1bA: "Join WhatsApp and send your email",
+      p2t: "Install the game", p2d: "Tap \"Become a tester\", then download the game from Play Store.", p2b: "Install the test",
+      p3t: "Join the beta WhatsApp (optional)", p3d: "Ask questions, send suggestions and follow the news.", p3b: "Join the beta WhatsApp",
+      vt: "Why join now",
+      v: ["<b>Exclusive Astro:</b> a tier S pet only from the beta. It can't be obtained any other way.", "<b>Unlimited friend invites:</b> you get 500 Aether for each of the first 3 friends who reach 14 days of play, and 200 Aether from the 4th on. Your friend gets 100 Aether when joining.", "<b>Your feedback shapes the game:</b> what you tell us becomes tweaks in the next versions."],
+      rodape: "Velárdia Saga · Stormleaf"},
+    es: {titulo: "Sé Beta Tester de Velárdia Saga", sub: "El juego está en prueba cerrada. Entra en 3 pasos rápidos, juega antes que nadie y ayuda a mejorar el juego.",
+      p1t: "Entra al grupo de la beta", p1d: "Entra con la cuenta de Google que usas en Play Store en el celular donde vas a jugar.", p1b: "Entrar al Grupo de Google", p1n: "Con otra cuenta la descarga no se habilita.", p1dA: "Entra al grupo de WhatsApp y envía el correo de la cuenta de Google que usas en Play Store en el celular donde vas a jugar.", p1bA: "Entrar al WhatsApp y enviar el correo",
+      p2t: "Instala el juego", p2d: "Toca \"Convertirse en tester\" y luego descarga el juego desde Play Store.", p2b: "Instalar la prueba",
+      p3t: "Entra al WhatsApp de la beta (opcional)", p3d: "Resuelve dudas, envía sugerencias y sigue las novedades.", p3b: "Entrar al WhatsApp de la beta",
+      vt: "Por qué entrar ahora",
+      v: ["<b>Astro exclusivo:</b> una mascota de tier S solo de la beta. No se puede conseguir de otra forma.", "<b>Invitación de amigos sin límite:</b> ganas 500 Éter por cada uno de los 3 primeros amigos que lleguen a 14 días de juego, y 200 Éter desde el 4.º. Tu amigo gana 100 Éter al entrar.", "<b>Tu opinión cambia el juego:</b> lo que nos cuentes se vuelve ajustes en las próximas versiones."],
+      rodape: "Velárdia Saga · Stormleaf"}
+  };
+
+  var salvo = ""; try { salvo = localStorage.getItem("idioma") || ""; } catch (e) {}
+  var idioma = salvo || (navigator.language || "pt").slice(0, 2).toLowerCase();
+  if (!T[idioma]) { idioma = "en"; }
+
+  function aplicar(l) {
+    var t = T[l];
+    document.documentElement.lang = l === "pt" ? "pt-BR" : l;
+    document.querySelectorAll("[data-t]").forEach(function (el) { el.textContent = t[el.getAttribute("data-t")]; });
+    var g = document.getElementById("grupo");
+    if (GRUPO_GOOGLE) { g.href = GRUPO_GOOGLE; g.removeAttribute("aria-disabled"); }
+    else { g.href = WHATSAPP; g.removeAttribute("aria-disabled"); g.textContent = t.p1bA; document.querySelector("[data-t=p1d]").textContent = t.p1dA; }
+    document.getElementById("testador").href = TESTADOR;
+    document.getElementById("zap").href = WHATSAPP;
+    var ul = document.getElementById("vantagens");
+    ul.innerHTML = "";
+    t.v.forEach(function (h) { var li = document.createElement("li"); li.innerHTML = h; ul.appendChild(li); });
+    document.querySelectorAll(".idiomas button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.l === l ? "true" : "false"); });
+  }
+  document.querySelectorAll(".idiomas button").forEach(function (b) {
+    b.addEventListener("click", function () { try { localStorage.setItem("idioma", b.dataset.l); } catch (e) {} aplicar(b.dataset.l); });
+  });
+  aplicar(idioma);
+})();
+</script>
+</body>
+</html>
