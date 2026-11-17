@@ -28,6 +28,18 @@ button{border:0;border-radius:12px;padding:14px;font:800 16px/1 inherit;font-fam
 .beta b{color:var(--ouro)}
 .beta ol{margin:0;padding-left:20px;font-size:14px;color:var(--texto2);display:grid;gap:6px}
 .beta a{color:var(--ouro);font-weight:700}
+.etapa{display:flex;gap:10px;align-items:flex-start}
+.etapa .num{flex:none;width:28px;height:28px;border-radius:50%;background:var(--laranja);color:var(--letra-botao);font-weight:800;display:grid;place-items:center}
+.etapa.feita .num{background:#4cf08a}
+.etapa strong{display:block;color:var(--texto)}
+.etapa p{font-size:13px}
+.beta a.passo-botao{display:block;text-align:center;text-decoration:none;border-radius:12px;padding:12px;font-weight:800;background:linear-gradient(var(--ouro),var(--laranja));color:var(--letra-botao)}
+.beta a.passo-botao.feito{background:#1d3a25;color:#4cf08a}
+.alerta{font-size:13px;color:#ffcf8a;border-left:3px solid var(--laranja);padding-left:8px}
+.link{background:none;color:var(--texto2);font-weight:600;font-size:13px;padding:4px;text-decoration:underline}
+button:disabled{opacity:.4;cursor:not-allowed}
+.trava{font-size:13px;color:#ff8a7a;min-height:1.2em}
+.zap{font-size:14px}.zap a{color:var(--ouro);font-weight:700}
 .passos{text-align:left;font-size:14px;color:var(--texto2);margin:0;padding-left:20px}
 </style>
 </head>
@@ -38,9 +50,16 @@ button{border:0;border-radius:12px;padding:14px;font:800 16px/1 inherit;font-fam
   <div class="codigo" id="caixa"><small id="rotulo">Código do convite</small><b id="codigo">------</b></div>
   <div class="beta" id="beta" hidden>
     <b id="betaTitulo"></b>
-    <ol id="betaPassos"></ol>
+    <div class="etapa" id="e1"><div class="num">1</div><div><strong id="e1t"></strong><p id="e1d"></p></div></div>
+    <a class="passo-botao" id="b1" target="_blank" rel="noopener"></a>
+    <div class="etapa" id="e2"><div class="num">2</div><div><strong id="e2t"></strong><p id="e2d"></p></div></div>
+    <a class="passo-botao" id="b2" target="_blank" rel="noopener"></a>
+    <div class="etapa" id="e3"><div class="num">3</div><div><strong id="e3t"></strong></div></div>
+    <p class="alerta" id="alerta"></p>
   </div>
   <button class="principal" id="baixar">Baixar na Play Store</button>
+  <div class="trava" id="trava"></div>
+  <button class="link" id="jaSou" hidden></button>
   <button class="secundario" id="copiar">Copiar código</button>
   <div class="ok" id="aviso" aria-live="polite"></div>
   <ol class="passos" id="passos">
@@ -48,6 +67,7 @@ button{border:0;border-radius:12px;padding:14px;font:800 16px/1 inherit;font-fam
     <li>Abra o jogo: o convite entra sozinho e você ganha um presente.</li>
     <li>Se não entrar, vá em Perfil › Convidar amigos › Tenho um código.</li>
   </ol>
+  <p class="zap" id="zap"></p>
 </main>
 <script>
 (function () {
@@ -65,23 +85,38 @@ button{border:0;border-radius:12px;padding:14px;font:800 16px/1 inherit;font-fam
       rotulo: "Código do convite", baixar: "Baixar na Play Store", copiar: "Copiar código", copiado: "Código copiado!",
       passos: ["Toque em Baixar e instale o jogo.", "Abra o jogo: o convite entra sozinho e você ganha um presente.", "Se não entrar, vá em Perfil › Convidar amigos › Tenho um código."],
       sem: "Este link está sem código. Peça o link de novo ao seu amigo.",
-      betaTitulo: "O jogo está em teste fechado: só baixa quem está na lista de testadores. Novo por aqui? Antes de baixar, você precisa entrar na lista.",
-      betaPassos: ["Entre no {grupo} com a mesma conta Google que você usa na Play Store do celular onde vai jogar; com outra conta o download não libera.", "Abra o {testador} e toque em \"Tornar-se testador\".", "Depois, volte aqui e siga os passos abaixo.", "Entre também na {zap} para tirar dúvidas e acompanhar as novidades."],
-      grupo: "Grupo do Google do beta", testador: "link de testador", zap: "comunidade do beta no WhatsApp"},
+      betaTitulo: "O jogo está em teste fechado. Faça os passos 1 e 2 antes de baixar, senão a Play Store mostra \"item não encontrado\".",
+      e1t: "Entre no grupo do beta", e1d: "Use a mesma conta Google da Play Store do celular onde vai jogar.", b1: "1. Entrar no Grupo do Google",
+      e2t: "Aceite o teste", e2d: "Toque em \"Tornar-se testador\" na página que abrir.", b2: "2. Tornar-se testador",
+      e3t: "Volte aqui e toque em Baixar",
+      feito: "✓ Feito (tocar de novo)",
+      alerta: "Apareceu \"O item não foi encontrado\"? A liberação leva alguns minutos depois de aceitar o teste. Espere de 5 a 10 minutos e toque em Baixar de novo.",
+      trava: "Faça os passos 1 e 2 primeiro.", jaSou: "Já sou testador, liberar o Baixar",
+      zapTxt: "Entre também na {zap} para tirar dúvidas e acompanhar as novidades.", zap: "comunidade do beta no WhatsApp"},
     es: {titulo: "Un amigo te invitó a Velardia Saga", sub: "RPG de fantasía que juega solo mientras armas a tu héroe y tus mascotas.",
       rotulo: "Código de invitación", baixar: "Descargar en Play Store", copiar: "Copiar código", copiado: "¡Código copiado!",
       passos: ["Toca Descargar e instala el juego.", "Abre el juego: la invitación entra sola y ganas un regalo.", "Si no entra, ve a Perfil › Invitar amigos › Tengo un código."],
       sem: "Este enlace no tiene código. Pide el enlace otra vez a tu amigo.",
-      betaTitulo: "El juego está en prueba cerrada: solo lo descargan quienes están en la lista de testers. ¿Eres nuevo? Antes de descargar, tienes que entrar en la lista.",
-      betaPassos: ["Entra en el {grupo} con la misma cuenta de Google que usas en Play Store en el celular donde vas a jugar; con otra cuenta la descarga no se habilita.", "Abre el {testador} y toca \"Convertirse en tester\".", "Después, vuelve aquí y sigue los pasos de abajo.", "Únete también a la {zap} para resolver dudas y seguir las novedades."],
-      grupo: "Grupo de Google de la beta", testador: "enlace de tester", zap: "comunidad de la beta en WhatsApp"},
+      betaTitulo: "El juego está en prueba cerrada. Haz los pasos 1 y 2 antes de descargar, si no Play Store muestra \"no se encontró el elemento\".",
+      e1t: "Únete al grupo de la beta", e1d: "Usa la misma cuenta de Google de Play Store del celular donde vas a jugar.", b1: "1. Entrar al Grupo de Google",
+      e2t: "Acepta la prueba", e2d: "Toca \"Convertirse en tester\" en la página que se abre.", b2: "2. Convertirse en tester",
+      e3t: "Vuelve aquí y toca Descargar",
+      feito: "✓ Hecho (tocar otra vez)",
+      alerta: "¿Apareció \"No se encontró el elemento\"? El acceso tarda unos minutos después de aceptar la prueba. Espera de 5 a 10 minutos y toca Descargar otra vez.",
+      trava: "Haz los pasos 1 y 2 primero.", jaSou: "Ya soy tester, habilitar Descargar",
+      zapTxt: "Únete también a la {zap} para resolver dudas y seguir las novedades.", zap: "comunidad de la beta en WhatsApp"},
     en: {titulo: "A friend invited you to Velardia Saga", sub: "A fantasy RPG that plays itself while you build your hero and pets.",
       rotulo: "Invite code", baixar: "Get it on Google Play", copiar: "Copy code", copiado: "Code copied!",
       passos: ["Tap Get it and install the game.", "Open the game: the invite is applied by itself and you get a gift.", "If it isn't, go to Profile › Invite friends › I have an invite code."],
       sem: "This link has no code. Ask your friend for the link again.",
-      betaTitulo: "The game is in closed testing: only people on the tester list can download it. New here? You need to join the list before downloading.",
-      betaPassos: ["Join the {grupo} with the same Google account you use on Play Store on the phone you'll play on; with another account the download won't unlock.", "Open the {testador} and tap \"Become a tester\".", "Then come back here and follow the steps below.", "Also join the {zap} to ask questions and follow the news."],
-      grupo: "beta Google Group", testador: "tester link", zap: "beta community on WhatsApp"}
+      betaTitulo: "The game is in closed testing. Do steps 1 and 2 before downloading, or Play Store shows \"item not found\".",
+      e1t: "Join the beta group", e1d: "Use the same Google account as the Play Store on the phone you'll play on.", b1: "1. Join the Google Group",
+      e2t: "Accept the test", e2d: "Tap \"Become a tester\" on the page that opens.", b2: "2. Become a tester",
+      e3t: "Come back here and tap Get it",
+      feito: "✓ Done (tap again)",
+      alerta: "Seeing \"Item not found\"? Access takes a few minutes after accepting the test. Wait 5 to 10 minutes and tap Get it again.",
+      trava: "Do steps 1 and 2 first.", jaSou: "I'm already a tester, unlock Get it",
+      zapTxt: "Also join the {zap} to ask questions and follow the news.", zap: "beta community on WhatsApp"}
   };
   var idioma = (navigator.language || "pt").slice(0, 2).toLowerCase();
   var t = TEXTOS[idioma] || TEXTOS.en;
@@ -92,24 +127,41 @@ button{border:0;border-radius:12px;padding:14px;font:800 16px/1 inherit;font-fam
   lista.innerHTML = "";
   t.passos.forEach(function (p) { var li = document.createElement("li"); li.textContent = p; lista.appendChild(li); });
 
+  var baixar = document.getElementById("baixar");
+  var trava = document.getElementById("trava");
+  var jaSou = document.getElementById("jaSou");
+  function lembrar(k) { try { localStorage.setItem("conv_" + k, "1"); } catch (e) {} }
+  function lembra(k) { try { return localStorage.getItem("conv_" + k) === "1"; } catch (e) { return false; } }
+  function atualizar() {
+    if (!BETA) { return; }
+    var ok = (lembra("p1") && lembra("p2")) || lembra("ja");
+    ["1", "2"].forEach(function (n) {
+      var feito = lembra("p" + n);
+      document.getElementById("e" + n).classList.toggle("feita", feito);
+      var bt = document.getElementById("b" + n);
+      bt.classList.toggle("feito", feito);
+      bt.textContent = feito ? t.feito : t["b" + n];
+    });
+    baixar.disabled = !ok;
+    trava.textContent = ok ? "" : t.trava;
+    jaSou.hidden = ok;
+  }
   if (BETA) {
     document.getElementById("beta").hidden = false;
-    document.getElementById("betaTitulo").textContent = t.betaTitulo;
-    var links = {grupo: [GRUPO, t.grupo], testador: [TESTADOR, t.testador], zap: [WHATSAPP, t.zap]};
-    var ol = document.getElementById("betaPassos");
-    t.betaPassos.forEach(function (passo) {
-      var li = document.createElement("li");
-      passo.split(/(\{grupo\}|\{testador\}|\{zap\})/).forEach(function (parte) {
-        var m = parte.match(/^\{(grupo|testador|zap)\}$/);
-        if (m) {
-          var a = document.createElement("a");
-          a.href = links[m[1]][0]; a.textContent = links[m[1]][1]; a.target = "_blank"; a.rel = "noopener";
-          li.appendChild(a);
-        } else { li.appendChild(document.createTextNode(parte)); }
-      });
-      ol.appendChild(li);
-    });
+    ["betaTitulo", "e1t", "e1d", "e2t", "e2d", "e3t", "alerta"].forEach(function (id) { document.getElementById(id).textContent = t[id]; });
+    jaSou.textContent = t.jaSou;
+    var b1 = document.getElementById("b1"), b2 = document.getElementById("b2");
+    b1.href = GRUPO; b2.href = TESTADOR;
+    b1.addEventListener("click", function () { lembrar("p1"); setTimeout(atualizar, 0); });
+    b2.addEventListener("click", function () { lembrar("p2"); setTimeout(atualizar, 0); });
+    jaSou.addEventListener("click", function () { lembrar("ja"); atualizar(); });
+    atualizar();
   }
+  var zap = document.getElementById("zap");
+  t.zapTxt.split("{zap}").forEach(function (parte, i) {
+    if (i > 0) { var a = document.createElement("a"); a.href = WHATSAPP; a.textContent = t.zap; a.target = "_blank"; a.rel = "noopener"; zap.appendChild(a); }
+    zap.appendChild(document.createTextNode(parte));
+  });
 
   var bruto = (new URLSearchParams(location.search).get("c") || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
   var valido = bruto.length === 6 && bruto.split("").every(function (c) { return LETRAS.indexOf(c) >= 0; });
@@ -141,7 +193,7 @@ button{border:0;border-radius:12px;padding:14px;font:800 16px/1 inherit;font-fam
     document.body.removeChild(campo);
   }
 
-  document.getElementById("baixar").addEventListener("click", function () {
+  baixar.addEventListener("click", function () {
     var destino = PLAY + (valido ? "&referrer=" + encodeURIComponent("convite=" + bruto) : "");
     var ir = function () { location.href = destino; };
     if (!valido) { ir(); return; }
