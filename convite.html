@@ -59,28 +59,29 @@ button{border:0;border-radius:12px;padding:14px;font:800 16px/1 inherit;font-fam
   var BETA = true;
   var GRUPO = "https://groups.google.com/g/velardia-saga-beta";
   var TESTADOR = "https://play.google.com/apps/testing/com.stormleaf.velardia";
+  var WHATSAPP = "https://chat.whatsapp.com/JJvgOvfKNi06zOBblTmQdW";
   var TEXTOS = {
     pt: {titulo: "Um amigo te chamou para Velárdia Saga", sub: "RPG de fantasia que joga sozinho enquanto você monta o seu herói e os seus pets.",
       rotulo: "Código do convite", baixar: "Baixar na Play Store", copiar: "Copiar código", copiado: "Código copiado!",
       passos: ["Toque em Baixar e instale o jogo.", "Abra o jogo: o convite entra sozinho e você ganha um presente.", "Se não entrar, vá em Perfil › Convidar amigos › Tenho um código."],
       sem: "Este link está sem código. Peça o link de novo ao seu amigo.",
       betaTitulo: "O jogo está em teste fechado: só baixa quem está na lista de testadores. Novo por aqui? Antes de baixar, você precisa entrar na lista.",
-      betaPassos: ["Entre no {grupo} com a mesma conta Google que você usa na Play Store do celular onde vai jogar; com outra conta o download não libera.", "Abra o {testador} e toque em \"Tornar-se testador\".", "Depois, volte aqui e siga os passos abaixo."],
-      grupo: "Grupo do Google do beta", testador: "link de testador"},
+      betaPassos: ["Entre no {grupo} com a mesma conta Google que você usa na Play Store do celular onde vai jogar; com outra conta o download não libera.", "Abra o {testador} e toque em \"Tornar-se testador\".", "Depois, volte aqui e siga os passos abaixo.", "Entre também na {zap} para tirar dúvidas e acompanhar as novidades."],
+      grupo: "Grupo do Google do beta", testador: "link de testador", zap: "comunidade do beta no WhatsApp"},
     es: {titulo: "Un amigo te invitó a Velardia Saga", sub: "RPG de fantasía que juega solo mientras armas a tu héroe y tus mascotas.",
       rotulo: "Código de invitación", baixar: "Descargar en Play Store", copiar: "Copiar código", copiado: "¡Código copiado!",
       passos: ["Toca Descargar e instala el juego.", "Abre el juego: la invitación entra sola y ganas un regalo.", "Si no entra, ve a Perfil › Invitar amigos › Tengo un código."],
       sem: "Este enlace no tiene código. Pide el enlace otra vez a tu amigo.",
       betaTitulo: "El juego está en prueba cerrada: solo lo descargan quienes están en la lista de testers. ¿Eres nuevo? Antes de descargar, tienes que entrar en la lista.",
-      betaPassos: ["Entra en el {grupo} con la misma cuenta de Google que usas en Play Store en el celular donde vas a jugar; con otra cuenta la descarga no se habilita.", "Abre el {testador} y toca \"Convertirse en tester\".", "Después, vuelve aquí y sigue los pasos de abajo."],
-      grupo: "Grupo de Google de la beta", testador: "enlace de tester"},
+      betaPassos: ["Entra en el {grupo} con la misma cuenta de Google que usas en Play Store en el celular donde vas a jugar; con otra cuenta la descarga no se habilita.", "Abre el {testador} y toca \"Convertirse en tester\".", "Después, vuelve aquí y sigue los pasos de abajo.", "Únete también a la {zap} para resolver dudas y seguir las novedades."],
+      grupo: "Grupo de Google de la beta", testador: "enlace de tester", zap: "comunidad de la beta en WhatsApp"},
     en: {titulo: "A friend invited you to Velardia Saga", sub: "A fantasy RPG that plays itself while you build your hero and pets.",
       rotulo: "Invite code", baixar: "Get it on Google Play", copiar: "Copy code", copiado: "Code copied!",
       passos: ["Tap Get it and install the game.", "Open the game: the invite is applied by itself and you get a gift.", "If it isn't, go to Profile › Invite friends › I have an invite code."],
       sem: "This link has no code. Ask your friend for the link again.",
       betaTitulo: "The game is in closed testing: only people on the tester list can download it. New here? You need to join the list before downloading.",
-      betaPassos: ["Join the {grupo} with the same Google account you use on Play Store on the phone you'll play on; with another account the download won't unlock.", "Open the {testador} and tap \"Become a tester\".", "Then come back here and follow the steps below."],
-      grupo: "beta Google Group", testador: "tester link"}
+      betaPassos: ["Join the {grupo} with the same Google account you use on Play Store on the phone you'll play on; with another account the download won't unlock.", "Open the {testador} and tap \"Become a tester\".", "Then come back here and follow the steps below.", "Also join the {zap} to ask questions and follow the news."],
+      grupo: "beta Google Group", testador: "tester link", zap: "beta community on WhatsApp"}
   };
   var idioma = (navigator.language || "pt").slice(0, 2).toLowerCase();
   var t = TEXTOS[idioma] || TEXTOS.en;
@@ -94,12 +95,12 @@ button{border:0;border-radius:12px;padding:14px;font:800 16px/1 inherit;font-fam
   if (BETA) {
     document.getElementById("beta").hidden = false;
     document.getElementById("betaTitulo").textContent = t.betaTitulo;
-    var links = {grupo: [GRUPO, t.grupo], testador: [TESTADOR, t.testador]};
+    var links = {grupo: [GRUPO, t.grupo], testador: [TESTADOR, t.testador], zap: [WHATSAPP, t.zap]};
     var ol = document.getElementById("betaPassos");
     t.betaPassos.forEach(function (passo) {
       var li = document.createElement("li");
-      passo.split(/(\{grupo\}|\{testador\})/).forEach(function (parte) {
-        var m = parte.match(/^\{(grupo|testador)\}$/);
+      passo.split(/(\{grupo\}|\{testador\}|\{zap\})/).forEach(function (parte) {
+        var m = parte.match(/^\{(grupo|testador|zap)\}$/);
         if (m) {
           var a = document.createElement("a");
           a.href = links[m[1]][0]; a.textContent = links[m[1]][1]; a.target = "_blank"; a.rel = "noopener";
