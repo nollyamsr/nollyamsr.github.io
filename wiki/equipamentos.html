@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Equipamentos · Wiki de Velárdia Saga</title>
+<meta name="description" content="Como funcionam equipamentos, baús, Forja de Ardak, materiais e Armazém em Velárdia Saga.">
+<link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+<div class="w">
+<div class="topo"><b>Wiki · Velárdia Saga</b><a href="./">Início</a><a href="../">Site do jogo</a></div>
+<header>
+<div class="tag">Velárdia Saga · versão 0.1.7 (V8)</div>
+<h1>Equipamentos</h1>
+<p>Tudo sobre o sistema de equipamentos: como as peças funcionam, como melhorar e onde guardar. Os números abaixo são os do jogo na V8 e podem mudar durante o beta.</p>
+<nav class="ind">
+<a href="#visao">1. Visão geral</a>
+<a href="#espacos">2. Os espaços do herói</a>
+<a href="#raridades">3. Raridades e cores</a>
+<a href="#status">4. Status base</a>
+<a href="#niveis">5. Nível e ícones</a>
+<a href="#baus">6. Baús</a>
+<a href="#equipar">7. Equipar e guardar</a>
+<a href="#forja">8. A Forja de Ardak</a>
+<a href="#materiais">9. Materiais</a>
+<a href="#mochila">10. Bolsa e Armazém</a>
+<a href="#duvidas">11. Dúvidas comuns</a>
+</nav>
+</header>
+
+<section id="visao">
+<h2><small>Comece por aqui</small>Visão geral</h2>
+<p>Seu herói tem 10 lugares para vestir peças. Cada peça tem um <b>espaço</b>, um <b>grau</b> (a raridade) e um <b>nível</b>. Quanto maior o grau e o nível, mais forte ela é.</p>
+<ol class="steps">
+<li><b>Derrote monstros.</b> Eles soltam baús. Os baús ficam guardados e você abre quando quiser.</li>
+<li><b>Abra os baús.</b> Dentro vêm peças e, depois da fase 24, materiais.</li>
+<li><b>Equipe as melhores peças.</b> O jogo não veste nada sozinho. Você olha e escolhe.</li>
+<li><b>Use a Forja de Ardak</b> para fundir peças repetidas em peças melhores, forjar peças novas e encaixar materiais.</li>
+</ol>
+<div class="tip"><b>Dica:</b> peça de grau alto nunca é obrigatória. Todo poder do jogo também se consegue jogando de graça.</div>
+</section>
+
+<section id="espacos">
+<h2><small>Onde vestir</small>Os espaços do herói</h2>
+<p>São 10 lugares: Arma primária, Capacete, Armadura, Luvas, Anel, Arma secundária, Colar, Cinto, Botas e um segundo Anel. Eles abrem aos poucos, conforme a fase que você alcançou.</p>
+<div class="strip">
+<figure><img class="ic" src="img/espada_nv001.png" alt="Arma"><span>Arma</span></figure>
+<figure><img class="ic" src="img/elmo_nv001.png" alt="Capacete"><span>Capacete</span></figure>
+<figure><img class="ic" src="img/armadura_nv001.png" alt="Armadura"><span>Armadura</span></figure>
+<figure><img class="ic" src="img/luvas_nv001.png" alt="Luvas"><span>Luvas</span></figure>
+<figure><img class="ic" src="img/anel_nv001.png" alt="Anel"><span>Anel</span></figure>
+<figure><img class="ic" src="img/escudo.png" alt="Arma secundária"><span>Secundária</span></figure>
+<figure><img class="ic" src="img/colar_nv001.png" alt="Colar"><span>Colar</span></figure>
+<figure><img class="ic" src="img/cinto_nv001.png" alt="Cinto"><span>Cinto</span></figure>
+<figure><img class="ic" src="img/botas_nv001.png" alt="Botas"><span>Botas</span></figure>
+</div>
+<div class="scroll"><table>
+<tr><th>Espaço</th><th>Abre na fase</th></tr>
+<tr><td>Arma, Capacete, Armadura, Botas</td><td>1</td></tr>
+<tr><td>Arma secundária</td><td>5</td></tr>
+<tr><td>Luvas</td><td>12</td></tr>
+<tr><td>Cinto</td><td>16</td></tr>
+<tr><td>Colar</td><td>27</td></tr>
+<tr><td>Anel</td><td>33</td></tr>
+<tr><td>Segundo Anel</td><td>37</td></tr>
+</table></div>
+<p>Só o próximo espaço aparece na tela, com um cadeado <img class="ic s" style="display:inline-block;vertical-align:middle" src="img/cadeado.png" alt="cadeado"> e a fase. Ao abrir um espaço novo, você ganha uma peça Rara para ele.</p>
+</section>
+
+<section id="raridades">
+<h2><small>Graus</small>Raridades e cores</h2>
+<p>Existem 7 graus. A cor do quadro da peça mostra o grau. Quanto mais raro, mais forte a base da peça e mais encaixes de material ela tem.</p>
+<div class="scroll"><table>
+<tr><th>Grau</th><th>Força da base*</th><th>Encaixes Tipo 1</th><th>Tipo 2</th><th>Tipo 3</th></tr>
+<tr><td><span class="pill c-comum">Comum</span> branco</td><td>1,0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td><span class="pill c-incomum">Incomum</span> verde</td><td>1,4</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td><span class="pill c-raro">Raro</span> azul</td><td>1,9</td><td>1</td><td>0</td><td>0</td></tr>
+<tr><td><span class="pill c-epico">Épico</span> roxo</td><td>2,9</td><td>2</td><td>0</td><td>0</td></tr>
+<tr><td><span class="pill c-lendario">Lendário</span> laranja</td><td>4,7</td><td>3</td><td>1</td><td>0</td></tr>
+<tr><td><span class="pill c-imortal">Imortal</span> vermelho</td><td>7,4</td><td>3</td><td>2</td><td>0</td></tr>
+<tr><td><span class="pill c-mistico">Místico</span> aurora</td><td>10,9</td><td>3</td><td>2</td><td>1</td></tr>
+</table></div>
+<p style="font-size:13px;color:var(--mut)">*Multiplica Ataque, Vida e Defesa. Os status em porcentagem usam outra escada: 1,0 · 1,27 · 1,6 · 2,0 · 2,53 · 3,2 · 4,0.</p>
+<p>O <b>Místico</b> é o grau máximo. O quadro dele tem o fundo colorido como uma aurora. Só ele aceita o material Tipo 3.</p>
+<p>Para quem não distingue bem as cores, a moldura também muda: cantinhos, cantoneiras e losangos aparecem conforme o grau sobe.</p>
+<div class="tip"><b>Imortal e Místico</b> não caem direto dos monstros. Você chega neles pelo Fundir ou pelo Baú do Vórax.</div>
+</section>
+
+<section id="status">
+<h2><small>O que cada peça dá</small>Status base</h2>
+<p>Cada espaço dá sempre os mesmos tipos de status. Não existem mais status sorteados nem Reforja: a diferença entre duas peças do mesmo espaço é o grau, o nível, o refino e os materiais encaixados.</p>
+<div class="scroll"><table>
+<tr><th>Espaço</th><th class="w2">O que dá</th></tr>
+<tr><td>Arma</td><td class="w2">Ataque, Ataque % e Velocidade de ataque (a velocidade só aumenta do Épico para cima)</td></tr>
+<tr><td>Capacete</td><td class="w2">Defesa</td></tr>
+<tr><td>Armadura</td><td class="w2">Defesa e Vida</td></tr>
+<tr><td>Luvas</td><td class="w2">Ataque e Velocidade de ataque %</td></tr>
+<tr><td>Botas</td><td class="w2">Velocidade de movimento % e Esquiva %</td></tr>
+<tr><td>Cinto</td><td class="w2">Redução de dano %</td></tr>
+<tr><td>Colar</td><td class="w2">Chance de crítico % e Redução de recarga %</td></tr>
+<tr><td>Anéis</td><td class="w2">Dano crítico % e Ataque %</td></tr>
+<tr><td>Arma secundária</td><td class="w2">Defesa e Vida (provisório)</td></tr>
+</table></div>
+<div class="tip"><b>Crítico:</b> o herói começa com 0% de chance de crítico. A chance vem do Colar e da Destreza. O Dano crítico % vem dos Anéis e da Destreza.</div>
+<p>O <b>Espadão</b> soma a base da espada mais a da segunda espada.</p>
+</section>
+
+<section id="niveis">
+<h2><small>Nível da peça</small>Nível e ícones</h2>
+<p>O nível da peça sobe de 1 em 1 e define o que o herói precisa para vestir (70% do nível da peça). Mas a força e o ícone andam em <b>11 degraus</b>: 1, 5, 10, 15, 20, 30, 40, 50, 65, 80 e 100.</p>
+<p>Exemplo com a espada. Cada degrau tem um desenho próprio:</p>
+<div class="strip">
+<figure><img class="ic" src="img/espada_nv001.png" alt=""><span>Nv 1</span></figure>
+<figure><img class="ic" src="img/espada_nv005.png" alt=""><span>Nv 5</span></figure>
+<figure><img class="ic" src="img/espada_nv010.png" alt=""><span>Nv 10</span></figure>
+<figure><img class="ic" src="img/espada_nv015.png" alt=""><span>Nv 15</span></figure>
+<figure><img class="ic" src="img/espada_nv020.png" alt=""><span>Nv 20</span></figure>
+<figure><img class="ic" src="img/espada_nv030.png" alt=""><span>Nv 30</span></figure>
+<figure><img class="ic" src="img/espada_nv040.png" alt=""><span>Nv 40</span></figure>
+<figure><img class="ic" src="img/espada_nv050.png" alt=""><span>Nv 50</span></figure>
+<figure><img class="ic" src="img/espada_nv065.png" alt=""><span>Nv 65</span></figure>
+<figure><img class="ic" src="img/espada_nv080.png" alt=""><span>Nv 80</span></figure>
+<figure><img class="ic" src="img/espada_nv100.png" alt=""><span>Nv 100</span></figure>
+</div>
+<p>Os outros espaços seguem a mesma ideia. Capacete, do nível 1 ao 100:</p>
+<div class="strip" style="grid-template-columns:repeat(2,72px)">
+<figure><img class="ic" src="img/elmo_nv001.png" alt=""><span>Nv 1</span></figure>
+<figure><img class="ic" src="img/elmo_nv100.png" alt=""><span>Nv 100</span></figure>
+</div>
+<p>Uma peça de nível 29 tem a força e o ícone do degrau 20. Ao chegar no 30, ela pula para o degrau seguinte.</p>
+<div class="tip"><b>Atenção:</b> os ícones atuais são provisórios e serão trocados.</div>
+<h3>De onde vem o nível das peças</h3>
+<p>Nas dificuldades Difícil, Pesadelo e Inferno, toda peça cai já no nível máximo (100). Na Normal, o nível acompanha a fase.</p>
+</section>
+
+<section id="baus">
+<h2><small>Drops</small>Baús</h2>
+<p>Tudo que os monstros soltam vem dentro de baús. Eles voam até o contador <b>Baús</b>, na coluna da direita da tela de luta, e ficam guardados fechados. O conteúdo já é sorteado quando o baú cai.</p>
+<div class="scroll"><table>
+<tr><th></th><th>Baú</th><th>Vem de</th><th>Guarda até</th><th>Abre sozinho (grátis)</th><th>Com Cofre Rúnico</th></tr>
+<tr><td><img class="ic s" src="img/bau_monstro.png" alt=""></td><td>Monstro</td><td>monstros comuns e elites</td><td>20</td><td>a cada 2 min</td><td>a cada 20 s</td></tr>
+<tr><td><img class="ic s" src="img/bau_chefe.png" alt=""></td><td>Chefe</td><td>chefe de fase, guardião e chefe de região</td><td>15</td><td>a cada 3 min</td><td>a cada 45 s</td></tr>
+<tr><td><img class="ic s" src="img/bau_vorax.png" alt=""></td><td>Vórax</td><td>o Vórax</td><td>10</td><td>a cada 3 min</td><td>a cada 45 s</td></tr>
+</table></div>
+<ul>
+<li>Toque no contador <b>Baús</b> para ver quantos tem de cada tipo. Dá para abrir um, todos de um tipo ou <b>Abrir tudo</b>.</li>
+<li>Se o tipo estiver cheio, o baú novo daquele tipo se perde. O jogo avisa na luta.</li>
+<li>O jogo abre 1 baú de cada tipo por vez, mesmo no modo descanso. Não existe baú offline.</li>
+<li>Peça Rara ou melhor aberta sozinha aparece na luta. Lendário ou melhor toca um som e vibra o celular.</li>
+</ul>
+<div class="tip"><b>Cofre Rúnico</b> (R$ 19,90, compra única, na loja): abre os baús sozinhos bem mais rápido do que eles caem, então a pilha nunca enche. É conveniência de tempo e não dá nenhuma peça a mais.</div>
+</section>
+
+<section id="equipar">
+<h2><small>No dia a dia</small>Equipar e guardar</h2>
+<p>O jogo <b>nunca equipa sozinho</b>. Você escolhe de três jeitos:</p>
+<ol class="steps">
+<li>Botão <b>Equipar</b> no cartão da peça, na aba Equipamentos.</li>
+<li>Botão <b>Equipar</b> dentro da ficha da peça.</li>
+<li>O botão <b>Equipar</b> de equipar as melhores, que veste de uma vez as peças guardadas que forem melhores do que as que você usa. Se não houver nenhuma melhor, o jogo avisa.</li>
+</ol>
+<h3>Vender ou guardar</h3>
+<p>Para cada grau você escolhe uma regra: <b>Vender</b> (a peça vira Ouro assim que abre o baú) ou <b>Guardar</b> (vai para a Bolsa de peças). Comum e Incomum começam em Guardar. A regra vale para o que cai depois de salva. Para o que já estava na bolsa, use o botão <b>Vender N agora</b>.</p>
+<h3>Cadeado</h3>
+<p>Peça trancada não é vendida, fundida nem usada por engano. Use para suas peças favoritas.</p>
+</section>
+
+<section id="forja">
+<h2><small>Melhorar peças</small>A Forja de Ardak</h2>
+<p>Ela abre na <b>fase 24</b>. Para entrar, vá ao <b>Acampamento</b> (atalho Acampar) e toque no <b>ferreiro</b>, ao lado da bigorna. Ao fechar, você volta ao Acampamento.</p>
+<p>A Forja tem nível, de 1 a 25. Cada ação dá XP e o nível libera ações novas. Um aviso mostra o que abriu.</p>
+<div class="scroll"><table>
+<tr><th>Ação</th><th>Abre no nível</th></tr>
+<tr><td>Fundir e Derreter</td><td>1</td></tr>
+<tr><td>Refinar</td><td>1</td></tr>
+<tr><td>Forjar</td><td>5</td></tr>
+<tr><td>Encaixar material Tipo 1</td><td>8</td></tr>
+<tr><td>Tirar material</td><td>10</td></tr>
+<tr><td>Encaixar material Tipo 2</td><td>15</td></tr>
+<tr><td>Encaixar material Tipo 3 (só peça Místico)</td><td>25</td></tr>
+</table></div>
+
+<h3><img class="ic s" style="display:inline-block;vertical-align:middle;margin-right:6px" src="img/ui_bigorna.png" alt="">Fundir</h3>
+<p>É grátis. Junte <b>9 peças do mesmo grau</b> (da Bolsa, nem vestidas nem trancadas) ou <b>9 materiais iguais em grau</b> (Tipo 1 ou 2). Eles viram 1 de grau igual ou acima, pelas chances abaixo. A tela mostra "tem N de 9" e pede confirmação.</p>
+<div class="scroll"><table>
+<tr><th>Você funde 9</th><th class="w2">Chance do resultado</th></tr>
+<tr><td><span class="pill c-comum">Comum</span></td><td class="w2">95% Incomum · 5% Raro</td></tr>
+<tr><td><span class="pill c-incomum">Incomum</span></td><td class="w2">96% Raro · 4% Épico</td></tr>
+<tr><td><span class="pill c-raro">Raro</span></td><td class="w2">97,5% Épico · 2,5% Lendário</td></tr>
+<tr><td><span class="pill c-epico">Épico</span></td><td class="w2">99% Lendário · 1% Imortal</td></tr>
+<tr><td><span class="pill c-lendario">Lendário</span></td><td class="w2">80% Imortal · 20% Lendário</td></tr>
+<tr><td><span class="pill c-imortal">Imortal</span></td><td class="w2">1% <b>Místico</b> · 99% Imortal</td></tr>
+</table></div>
+<p>As mesmas chances valem para peças e materiais. A peça sai num espaço sorteado e no maior nível das 9. O material Tipo 3 não se funde.</p>
+
+<h3>Forjar</h3>
+<p>Disponível no nível 5 da Forja. Escolha o <b>espaço</b> e o <b>grau do material</b>. Gasta <b>3 materiais Tipo 1</b> do mesmo grau (de qualquer família) mais um pouco de Ouro. A barra "Chances" mostra o que pode sair. O Forjar nunca dá Místico.</p>
+<div class="scroll"><table>
+<tr><th>3 materiais</th><th>Incomum</th><th>Raro</th><th>Épico</th><th>Lendário</th><th>Imortal</th></tr>
+<tr><td><span class="pill c-comum">Comum</span></td><td>50%</td><td>40%</td><td>8%</td><td>2%</td><td>–</td></tr>
+<tr><td><span class="pill c-incomum">Incomum</span></td><td>30%</td><td>52%</td><td>13%</td><td>4,5%</td><td>0,5%</td></tr>
+<tr><td><span class="pill c-raro">Raro</span></td><td>18%</td><td>56%</td><td>18%</td><td>7%</td><td>1%</td></tr>
+<tr><td><span class="pill c-epico">Épico</span></td><td>3%</td><td>52%</td><td>27%</td><td>15%</td><td>3%</td></tr>
+<tr><td><span class="pill c-lendario">Lendário</span></td><td>–</td><td>49%</td><td>30%</td><td>17%</td><td>4%</td></tr>
+<tr><td><span class="pill c-imortal">Imortal</span></td><td>–</td><td>45%</td><td>30%</td><td>20%</td><td>5%</td></tr>
+</table></div>
+<p>Também há o <b>lote</b>: forja 10 peças de uma vez, gastando 3 materiais por peça, com confirmação. A peça sai no maior nível que o seu herói já pode vestir.</p>
+
+<h3>Encaixar</h3>
+<p>Escolha uma peça (vestida ou da Bolsa). A tela mostra os encaixes dela por tipo, o status e o valor de agora. Toque num material: o jogo mostra o custo (1 material + Ouro) e os status possíveis, e pergunta antes de gastar. Quanto maior o <b>nível da peça</b>, mais forte o material: vale 30% da faixa no nível 1 e 100% no nível 100.</p>
+<p>Para <b>tirar</b> um material, toque no encaixe cheio (a partir do nível 10 da Forja). É grátis, mas o material some.</p>
+
+<h3><img class="ic s" style="display:inline-block;vertical-align:middle;margin-right:6px" src="img/ui_reforjar.png" alt="">Refinar</h3>
+<p>Continua como antes: sobe o +X da peça com Cristais da mina. Agora o +X fica no <b>encaixe</b> do corpo (Arma, Capacete, cada Anel...). A peça nova que você veste ali herda o refino, e a peça que sai volta a +0. Só as peças vestidas aparecem para refinar.</p>
+
+<h3>Derreter</h3>
+<p>Vende peças em troca de Ouro e dá XP à Forja.</p>
+</section>
+
+<section id="materiais">
+<h2><small>Para encaixar</small>Materiais</h2>
+<p>São 65 materiais de monstro, em 3 tipos. Eles <b>só caem nos baús da Aventura</b>, depois que a Forja abre (fase 24). Material não é prêmio de loja nem de missão. Cada pilha guarda até 10.</p>
+<div class="strip">
+<figure><img class="ic" src="img/material_garra.png" alt=""><span>Garra</span></figure>
+<figure><img class="ic" src="img/material_dente.png" alt=""><span>Dente</span></figure>
+<figure><img class="ic" src="img/material_gosma.png" alt=""><span>Gosma</span></figure>
+<figure><img class="ic" src="img/material_olho.png" alt=""><span>Olho</span></figure>
+<figure><img class="ic" src="img/material_coracao.png" alt=""><span>Coração</span></figure>
+<figure><img class="ic" src="img/material_nucleo.png" alt=""><span>Núcleo</span></figure>
+</div>
+<p style="font-size:13px;color:var(--mut)">Ícones provisórios.</p>
+<div class="scroll"><table>
+<tr><th>Tipo</th><th>Quantos</th><th class="w2">Como funciona</th></tr>
+<tr><td>Tipo 1</td><td>36</td><td class="w2">1 status por tipo de peça (arma, armadura ou acessório). Existe do Comum ao Místico.</td></tr>
+<tr><td>Tipo 2</td><td>18</td><td class="w2">Do Épico ao Místico. Ao encaixar, sai 1 de 2 status possíveis.</td></tr>
+<tr><td>Tipo 3</td><td>11</td><td class="w2">Só Místico. Um efeito especial certo que só existe nele e vale em qualquer peça.</td></tr>
+</table></div>
+<h3>Exemplos</h3>
+<div class="card"><b>Garra de Lobo</b> (Tipo 1, Comum): em arma dá Dano físico %, em armadura dá Redução de dano %, em acessório dá Ataque.</div>
+<div class="card"><b>Dente de Goblin</b> (Tipo 1, Comum): em arma dá Dano em chefe %, em armadura dá Defesa, em acessório dá Chance de crítico %.</div>
+<div class="card"><b>Pulmão de Salamandra</b> (Tipo 2, Épico): em arma dá Roubo de vida % ou Ataque.</div>
+<div class="row card"><img class="ic s" src="img/material_iris.png" alt=""><div><b>Íris de Cultista Primordial</b> (Tipo 3): sobe o nível das habilidades.</div></div>
+<div class="row card"><img class="ic s" src="img/material_timpano.png" alt=""><div><b>Tímpano de Goblin Primordial</b> (Tipo 3): o ataque básico solta a habilidade pronta de vez em quando.</div></div>
+<p>Materiais também dão <b>Esquiva</b> (o golpe não acerta) e <b>Bloqueio</b> (o golpe perde metade). Cada um tem teto de 75%.</p>
+<h3>Onde cada grau cai</h3>
+<p>O grau do material depende da dificuldade da Aventura:</p>
+<div class="scroll"><table>
+<tr><th>Dificuldade</th><th>Graus que caem</th></tr>
+<tr><td>Normal</td><td>Comum a Raro</td></tr>
+<tr><td>Difícil</td><td>Incomum a Épico</td></tr>
+<tr><td>Pesadelo</td><td>Raro a Lendário</td></tr>
+<tr><td>Inferno</td><td>Épico a Imortal</td></tr>
+</table></div>
+<ul>
+<li>Baú de Monstro: 3% de chance de 1 material Tipo 1.</li>
+<li>Baú de Chefe: 1 material Tipo 1 garantido, e 15% de chance de um Tipo 2 a mais.</li>
+<li>Baú do Vórax: 3 materiais Tipo 1 e 50% de chance de um Tipo 2 a mais. O Tipo 3 só cai no Pesadelo (2%) e no Inferno (5%).</li>
+<li>Tipo 2 só aparece nos graus de Épico para cima.</li>
+</ul>
+<div class="tip"><b>Peça Místico direto:</b> o Baú do Vórax do Inferno tem 0,05% de chance de dar uma peça Místico.</div>
+</section>
+
+<section id="mochila">
+<h2><small>Espaço</small>Bolsa e Armazém</h2>
+<p>O jogo tem três lugares para guardar coisas.</p>
+<div class="card"><h3 style="margin-top:0">Bolsa de peças</h3>
+<p>Guarda as peças de equipamento. Começa com 100 espaços. Dá para ampliar de 10 em 10 por 200 Éter <img class="ic s" style="display:inline-block;vertical-align:middle" src="img/eter.png" alt="Éter">, com confirmação (até 20 compras).</p></div>
+<div class="card"><h3 style="margin-top:0">Inventário de itens</h3>
+<p>Guarda consumíveis, materiais, baús e chaves. Começa com <b>60 espaços</b> e cada pilha ocupa 1 espaço. Dá para ampliar 10 espaços por 200 Éter, até o máximo de 160. Aparece como "N / 60 espaços".</p>
+<ul>
+<li>Consumíveis: até 99 por espaço. Materiais: até 10. Chaves e baús: sem limite, 1 espaço por tipo.</li>
+<li>Moedas não ocupam espaço (Ouro, Éter, Cristais, fragmentos de pet, Selo de Ardak e semelhantes).</li>
+<li>Abra pelo menu de atalhos, em <b>Inventário</b>. Há filtros: Tudo, Moedas, Materiais, Consumíveis, Baús e Chaves.</li>
+</ul></div>
+<div class="card"><h3 style="margin-top:0"><img class="ic s" style="display:inline-block;vertical-align:middle;margin-right:6px" src="img/ui_bau.png" alt="">Armazém</h3>
+<p>Um depósito extra, no menu de atalhos. Tem <b>4 abas de 50 espaços</b>.</p>
+<div class="scroll"><table>
+<tr><th>Aba</th><th>Como abre</th></tr>
+<tr><td>1</td><td>Já vem aberta</td></tr>
+<tr><td>2</td><td>Ao vencer o Vórax</td></tr>
+<tr><td>3</td><td>500 Éter</td></tr>
+<tr><td>4</td><td>500 Éter</td></tr>
+</table></div>
+<ul>
+<li>Para guardar, toque no item e use <b>Guardar no Armazém</b>. Também existe <b>Guardar tudo no Armazém</b> no rodapé.</li>
+<li>Para pegar de volta, toque no item e use <b>Levar à Bolsa</b>.</li>
+<li>Peças de equipamento entram <b>só à mão</b>, e só as da Bolsa de peças (não as vestidas). Cada uma ocupa 1 espaço, mantém refino, encaixes e cadeado, e não conta para o Poder enquanto guardada.</li>
+<li><b>A Forja usa os materiais do Armazém sem tirar de lá.</b> Forjar, Fundir e Encaixar somam o que está na Bolsa e no Armazém.</li>
+<li>Quando a Bolsa de itens enche, o que chega vai sozinho para o Armazém. Se tudo estiver cheio, o prêmio sobrante se perde e o jogo avisa. Um losango vermelho aparece no atalho.</li>
+</ul></div>
+</section>
+
+<section id="duvidas">
+<h2><small>Perguntas rápidas</small>Dúvidas comuns</h2>
+<div class="card"><b>Por que o jogo não equipa a melhor peça sozinho?</b><br>Para você ver o que ganhou e decidir. Use o botão de equipar as melhores quando quiser.</div>
+<div class="card"><b>A Forja não aparece. E agora?</b><br>Ela abre na fase 24. Depois vá ao Acampamento e toque no ferreiro.</div>
+<div class="card"><b>Meus baús sumiram?</b><br>Se um tipo estava cheio, o baú novo dele se perde. Abra antes de encher, ou considere o Cofre Rúnico.</div>
+<div class="card"><b>Posso ter um item na Bolsa de itens cheia?</b><br>O jogo manda o excesso para o Armazém. Só perde se os dois estiverem cheios.</div>
+<div class="card"><b>Como consigo Místico?</b><br>Fundindo 9 peças Imortais (1% de chance), ou pelo Baú do Vórax do Inferno (0,05%).</div>
+<div class="card"><b>Perdi material ao tirar do encaixe?</b><br>Sim. Tirar é grátis, mas o material some. O jogo avisa antes.</div>
+<div class="card"><b>Preciso pagar para ficar forte?</b><br>Não. Pagar compra tempo e conveniência, como o Cofre Rúnico. Todo poder também vem jogando.</div>
+</section>
+
+<footer>Wiki de Velárdia Saga · versão 0.1.7. Valores sujeitos a ajuste durante o beta; ícones provisórios. · <a href="./">Voltar ao início da Wiki</a></footer>
+</div>
+</body>
+</html>
